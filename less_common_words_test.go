@@ -1,4 +1,4 @@
-package LessCommonWords
+package lessCommonWords
 
 import (
 	"fmt"
