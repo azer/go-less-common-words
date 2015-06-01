@@ -20,6 +20,13 @@ func ExampleKeywords() {
 	// Output: [iceland goat cheese]
 }
 
+func ExampleKeywordsWithCustomBlacklists() {
+	result := Keywords("I'm from Iceland and I make goat cheese. How about you? Do you work or study?", BlackList1, BlackList2)
+
+	fmt.Println(result)
+	// Output: [goat]
+}
+
 func ExampleFilter() {
 	result := Filter([]string{"from",
 		"Iceland",
