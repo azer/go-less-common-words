@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Filter(list []string) []string {
+func Filter(list []string, dictionaries ...map[string]bool) []string {
 	result := []string{}
 
 	for _, el := range list {
@@ -16,12 +16,24 @@ func Filter(list []string) []string {
 			continue
 		}
 
+		skip := false
+		for _, dict := range dictionaries {
+			if dict[el] {
+				skip = true
+				break
+			}
+		}
+
+		if skip {
+			continue
+		}
+
 		result = append(result, el)
 	}
 
 	return result
 }
 
-func Keywords(input string) []string {
-	return Filter(regexp.MustCompile("[^\\w]").Split(input, -1))
+func Keywords(input string, dictionaries ...map[string]bool) []string {
+	return Filter(regexp.MustCompile("[^\\w]").Split(input, -1), dictionaries...)
 }
